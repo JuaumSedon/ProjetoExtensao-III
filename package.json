@@ -1,21 +1,18 @@
 {
-  "name": "atelie-laudir",
+  "name": "nova-pasta",
   "version": "1.0.0",
-  "description": "Vitrine digital do Ateliê Laudir - Node + Express + MongoDB",
-  "main": "src/server.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "mongoose": "^7.3.1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.22"
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "mongoose": "^8.19.1"
   }
 }
