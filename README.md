@@ -115,4 +115,3 @@ DELETE /services/:id -> Remove um serviço
 
 ---
 
-Se quiser, eu posso agora instalar as dependências e iniciar o servidor para verificar que tudo funciona (preciso que você permita rodar comandos no terminal). Caso prefira, eu também posso orientar passo-a-passo para você executar localmente.
