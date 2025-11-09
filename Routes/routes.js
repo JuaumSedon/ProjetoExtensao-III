@@ -1,20 +1,28 @@
-const homeModel = require('../Models/homeModel')
-const homeController = require('../Controllers/homeController')
-const servicoController = require('../Controllers/servicoController')
-
+const homeController = require('../Controllers/homeController');
+const {adicionarItem} = require('../Controllers/adicionarItemController');
+const {listarItens} = require('../Controllers/listarItensController');
 
 
 module.exports = {
     home:(app)=>{
-
         app.get('/',homeController.home);
-        
     },
 
     lista:(app)=>{
+        app.get('/listar-itens',listarItens);
+    },
 
-        app.get('/listar-itens',servicoController.listarItens);
-    }
+    remove:(app)=>{
 
-
+        app.get('/remover-item',homeController.paginaRemoverItem)
+    },
+    
+    paginaNovoItem:(app) => {
+        app.get('/novo-item', homeController.paginaNovoItem);
+    },
+    
+    adicionarItem:(app)=>{
+        app.post('/adicionar-item', adicionarItem);
+    },
+    
 }

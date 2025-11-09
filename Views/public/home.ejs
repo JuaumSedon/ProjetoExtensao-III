@@ -81,6 +81,7 @@
             /* Faz os botões ocuparem a mesma largura */
             max-width: 250px;
             /* Define uma largura máxima para não ficarem muito grandes */
+            text-decoration: none; /* Garante que o link não seja sublinhado */
         }
 
         .modal-container .cta-button:hover {
@@ -92,13 +93,14 @@
 
 <body>
     <div class="modal-container">
-        <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
         <h1>Atelier CRUD</h1>
 
         <div class="button-group">
             <a href="/listar-itens" class="cta-button">Listar Serviços</a>
-            <button class="cta-button">Adicionar</button>
-            <button class="cta-button">Remover</button>
+            
+            <a href="/novo-item" class="cta-button">Adicionar um Servico</a>
+            
+            <a href="/remover-item" class="cta-button">Remover um Servico</a>
         </div>
     </div>
 </body>
