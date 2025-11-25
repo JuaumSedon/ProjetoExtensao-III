@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Serviços</title>
+    <title>Remover Serviços</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
@@ -21,7 +21,7 @@
         }
 
         h1 {
-            color: #33d4e2;
+            color: #ff6b6b; /* Vermelho para indicar perigo/remoção */
             text-align: center;
             font-size: 2.5em;
             margin-bottom: 30px;
@@ -54,33 +54,29 @@
 
         .grid-container {
             display: grid;
-            /* Cria colunas responsivas:
-               - Tenta criar colunas de 300px.
-               - Se não couber, elas encolhem (minmax).
-               - auto-fill preenche o espaço.
-            */
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 25px;
         }
 
         .item-card {
             background-color: #3c3c3c;
-            border: 2px solid #33d4e2;
+            border: 2px solid #ff6b6b; /* Borda vermelha para indicar área de remoção */
             border-radius: 8px;
             padding: 25px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
+            position: relative; /* Necessário para posicionar o botão */
         }
 
         .item-card h3 {
-            color: #33d4e2;
-            margin-top: 0;
+            color: #ff6b6b;
+            margin-top: 10px;
             font-size: 1.5em;
         }
 
         .item-card .description {
-            flex-grow: 1; /* Faz a descrição ocupar o espaço disponível */
+            flex-grow: 1; 
             margin-bottom: 20px;
             opacity: 0.9;
             line-height: 1.6;
@@ -93,47 +89,75 @@
             text-align: right;
         }
 
+        /* ESTILO DO BOTÃO DE REMOVER */
+        .delete-form {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .btn-remover {
+            background-color: #ff4757;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-remover:hover {
+            background-color: #c0392b;
+            transform: scale(1.02);
+            box-shadow: 0 0 10px rgba(255, 71, 87, 0.5);
+        }
+
         .no-items {
             text-align: center;
             font-size: 1.2em;
             background-color: #3c3c3c;
             padding: 30px;
             border-radius: 8px;
-            border: 1px dashed #33d4e2;
+            border: 1px dashed #777;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Remover Serviços</h1>
+        <h1>Área de Exclusão</h1>
 
         <div class="links-container">
             <a href="/" class="cta-button">Voltar para Home</a>
-            <a href="/novo-item" class="cta-button">Adicionar Novo Item</a>
+            <a href="/listar-itens" class="cta-button">Ver Lista Comum</a>
         </div>
 
-        <!-- 
-            Aqui começa a mágica do EJS!
-            'itens' é a variável que vamos passar pelo Controller.
-        -->
         
         <% if (itens.length > 0) { %>
             <div class="grid-container">
-                
-                <!-- Fazemos um loop em cada item da lista -->
+
                 <% itens.forEach(item => { %>
                     <div class="item-card">
 
-                        <button> REMOVER </button>
+                        <form action="/remover-item/<%= item._id %>" method="POST" class="delete-form" onsubmit="return confirm('Tem certeza que deseja DELETAR <%= item.nome %>? Essa ação não tem volta!');">
+                            <button type="submit" class="btn-remover">
+                                🗑️ Excluir Item
+                            </button>
+                        </form>
+
                         <h3><%= item.nome %></h3>
                         
                         <p class="description">
-                            <%= item.descricao || 'Este item não possui descrição.' %>
+                            <%= item.descricao || 'Sem descrição.' %>
                         </p>
                         
                         <p class="price">
-                            <!-- Formatamos o preço para moeda brasileira (R$) -->
                             <%= item.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) %>
                         </p>
                     </div>
@@ -141,8 +165,7 @@
                 
             </div>
         <% } else { %>
-            <!-- Mostra esta mensagem se a lista estiver vazia -->
-            <p class="no-items">Nenhum item cadastrado no momento.</p>
+            <p class="no-items">Nenhum item para remover.</p>
         <% } %>
 
     </div>

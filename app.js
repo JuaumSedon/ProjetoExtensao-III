@@ -9,8 +9,8 @@ app.set("views", "./Views");
 app.use(express.static('./public'))
 
 
-app.use(express.json()); // Essencial para o app.post() ler o req.body em JSON
-app.use(express.urlencoded({extended:true})); // Essencial para ler dados de formulários HTML
+app.use(express.json());
+app.use(express.urlencoded({extended:true})); 
 
 
 routes.home(app);
@@ -18,6 +18,7 @@ routes.lista(app);
 routes.remove(app);
 routes.paginaNovoItem(app);
 routes.adicionarItem(app);
+routes.removerItem(app);
 
 
 app.use((req,res,next)=>{
