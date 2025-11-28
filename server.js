@@ -1,28 +1,32 @@
-const app = require('./app');
+const app = require('./app'); 
 const dbConn = require('./Config/dbConn');
 
-const porta = 3000;
+dbConn();
+
+module.exports = app;
+
+//const porta = 3000;
 
 
-const initServer = async()=>{
+//const initServer = async()=>{
 
-    try {
+    //try {
 
-        await dbConn();
+        //await dbConn();
 
-        app.listen(porta,()=>{
+        //app.listen(porta,()=>{
 
-            console.log(`Servidor rodando na porta ${porta}`)
-        })
+            //console.log(`Servidor rodando na porta ${porta}`)
+        //})
         
-    } catch (error) {
+    //} catch (error) {
 
-        console.log("Erro ao iniciar servidor",error);
+        //console.log("Erro ao iniciar servidor",error);
         
-    }
-}
+    //}
+//}
 
 
 
-initServer();
+//initServer();
 
