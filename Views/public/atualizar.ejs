@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atualizar Item: <%= itens.nome %></title>
+    <title>Atualizar Item: <%= item.nome %></title>
     <style>
+        /* [SEUS ESTILOS CSS ESTÃO AQUI] */
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
         body {
@@ -21,15 +22,13 @@
         .form-container {
             background-color: #3c3c3c;
             padding: 40px;
-            /* Cor da borda alterada para indicar edição/alerta */
-            border: 2px solid #ffae42; 
+            border: 2px solid #ffae42;
             border-radius: 8px;
             width: 400px;
         }
 
         .form-container h1 {
-            /* Cor alterada para indicar Edição */
-            color: #ffae42; 
+            color: #ffae42;
             text-align: center;
         }
 
@@ -54,7 +53,6 @@
             color: #ffffff;
         }
 
-        /* Novo estilo para o checkbox */
         .checkbox-group {
             display: flex;
             align-items: center;
@@ -62,13 +60,13 @@
             margin-top: 10px;
             margin-bottom: 20px;
         }
+
         .checkbox-group input[type="checkbox"] {
             width: auto;
         }
 
         .form-button {
-            /* Cor do botão alterada para Edição */
-            background-color: #ffae42; 
+            background-color: #ffae42;
             color: #ffffff;
             border: none;
             padding: 15px;
@@ -99,27 +97,27 @@
     <div class="form-container">
         <h1>Atualizar Item</h1>
 
-        <form method="POST" action="/atualizar/<%= itens._id %>?_method=PUT">
+        <form method="POST" action="/atualizar/<%= item._id %>">
 
             <div class="form-group">
                 <label for="nome">Nome do Item:</label>
-                <input type="text" id="nome" name="nome" value="<%= itens.nome %>" required>
+                <input type="text" id="nome" name="nome" value="<%= item.nome %>" required>
             </div>
 
             <div class="form-group">
                 <label for="descricao">Descrição:</label>
-                <textarea id="descricao" name="descricao" rows="3"><%= itens.descricao %></textarea>
+                <textarea id="descricao" name="descricao" rows="3"><%= item.descricao %></textarea>
             </div>
 
             <div class="form-group">
                 <label for="preco">Preço:</label>
-                <input type="number" id="preco" name="preco" step="0.01" min="0" value="<%= itens.preco %>" required>
+                <input type="number" id="preco" name="preco" step="0.01" min="0" value="<%= item.preco %>" required>
             </div>
-
+            
             <div class="checkbox-group">
                 <label for="emEstoque">Em Estoque:</label>
                 <input type="checkbox" id="emEstoque" name="emEstoque" 
-                    <% if (itens.emEstoque) { %> checked <% } %>>
+                    <% if (item.emEstoque) { %> checked <% } %>>
             </div>
 
             <button type="submit" class="form-button">Salvar Alterações</button>

@@ -42,14 +42,22 @@ module.exports.paginaRemoverItem = async(req, res) => {
 
 }
 
-module.exports.paginaAtualizarItem = async(req, res) => {
-
+module.exports.paginaAtualizarItem = async (req, res) => {
     try {
-        const todosOsItens = await servicoModel.find({});
+        const itemId = req.params.id; 
+        
+        // Busca o item e passa-o como 'item' (singular)
+        const itemEncontrado = await ServicoModel.findById(itemId); 
 
-        res.render('public/atualizar.ejs',{itens: todosOsItens});
-    } catch (error) {
-        res.status(500).send("Erro ao carregar página de update.");
+        if (!itemEncontrado) {
+            return res.status(404).render('erro.ejs', { message: 'Item de Serviço não encontrado para edição.' });
+        }
+
+        // Renderiza a View EJS
+        res.render('public/atualizar.ejs', { item: itemEncontrado }); 
+        
+    } catch (erro) {
+        console.error("Erro ao carregar formulário de edição:", erro);
+        res.status(500).render('erro.ejs', { message: 'Erro interno ao carregar a página de edição. (Verifique o ID)' });
     }
-
-}
+};

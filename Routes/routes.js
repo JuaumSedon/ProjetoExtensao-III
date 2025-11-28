@@ -30,7 +30,7 @@ module.exports = {
     },
 
     atualizar:(app)=>{
-        app.put('/atualizar/:id', atualizarController.atualizarItens);
+        app.post('/atualizar/:id', atualizarController.atualizarItens);
     },
 
     carregarAtualizacao:(app)=>{
