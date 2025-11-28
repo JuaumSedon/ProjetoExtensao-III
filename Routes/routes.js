@@ -34,7 +34,7 @@ module.exports = {
     },
 
     carregarAtualizacao:(app)=>{
-        app.get('/atualizar/:id', atualizarController.carregarAtualizacao);
+        app.get('/atualizar', homeController.paginaAtualizarItem);
     },
     
 }

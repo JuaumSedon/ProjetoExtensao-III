@@ -41,3 +41,15 @@ module.exports.paginaRemoverItem = async(req, res) => {
     }
 
 }
+
+module.exports.paginaAtualizarItem = async(req, res) => {
+
+    try {
+        const todosOsItens = await servicoModel.find({});
+
+        res.render('public/atualizar.ejs',{itens: todosOsItens});
+    } catch (error) {
+        res.status(500).send("Erro ao carregar página de update.");
+    }
+
+}
