@@ -1,8 +1,8 @@
-const homeController = require('../Controllers/homeController');
-const {adicionarItem} = require('../Controllers/adicionarItemController');
-const {listarItens} = require('../Controllers/listarItensController');
-const { removerItem } = require('../Controllers/removerItemController');
-const atualizarController = require('../Controllers/atualizarController');
+const homeController = require('../controllers/homeController');
+const {adicionarItem} = require('../controllers/adicionarItemController');
+const {listarItens} = require('../controllers/listarItensController');
+const { removerItem } = require('../controllers/removerItemController');
+const atualizarController = require('../controllers/atualizarController');
 
 module.exports = {
     home:(app)=>{

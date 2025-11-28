@@ -1,7 +1,7 @@
 
 //Nao precisa de Model , serve apenas para renderizar uma View.
 
-const servicoModel = require('../Models/servicoModel')
+const servicoModel = require('../models/servicoModel')
 
 module.exports.home = (req, res) => {
 

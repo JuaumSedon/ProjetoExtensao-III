@@ -1,4 +1,4 @@
-const servicoModel = require('../Models/servicoModel');
+const servicoModel = require('../models/servicoModel');
 
 module.exports.removerItem = async (req, res) => {
 
