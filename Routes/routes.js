@@ -2,7 +2,7 @@ const homeController = require('../Controllers/homeController');
 const {adicionarItem} = require('../Controllers/adicionarItemController');
 const {listarItens} = require('../Controllers/listarItensController');
 const { removerItem } = require('../Controllers/removerItemController');
-
+const atualizarController = require('../Controllers/atualizarController');
 
 module.exports = {
     home:(app)=>{
@@ -27,6 +27,14 @@ module.exports = {
     },
     removerItem:(app)=>{
         app.post('/remover-item/:id',removerItem)
-    }
+    },
+
+    atualizar:(app)=>{
+        app.put('/atualizar/:id', atualizarController.atualizarItens);
+    },
+
+    carregarAtualizacao:(app)=>{
+        app.get('/atualizar/:id', atualizarController.carregarAtualizacao);
+    },
     
 }
