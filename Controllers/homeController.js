@@ -7,7 +7,7 @@ module.exports.home = (req, res) => {
 
     try {
 
-        res.render('public/home.ejs');
+        res.render('home.ejs');
 
     } catch (error) {
 
@@ -23,7 +23,7 @@ module.exports.home = (req, res) => {
 
 module.exports.paginaNovoItem = (req, res) => {
     try {
-        res.render('public/novo-item.ejs');
+        res.render('novo-item.ejs');
     } catch (error) {
         res.status(500).send("Erro ao carregar página de formulário.");
     }
@@ -35,7 +35,7 @@ module.exports.paginaRemoverItem = async(req, res) => {
     try {
         const todosOsItens = await servicoModel.find({});
 
-        res.render('public/remover-item.ejs',{itens: todosOsItens});
+        res.render('remover-item.ejs',{itens: todosOsItens});
     } catch (error) {
         res.status(500).send("Erro ao carregar página de remoção.");
     }
@@ -54,7 +54,7 @@ module.exports.paginaAtualizarItem = async (req, res) => {
         }
 
         // Renderiza a View EJS
-        res.render('public/atualizar.ejs', { item: itemEncontrado }); 
+        res.render('atualizar.ejs', { item: itemEncontrado }); 
         
     } catch (erro) {
         console.error("Erro ao carregar formulário de edição:", erro);
