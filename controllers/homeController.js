@@ -31,18 +31,20 @@ module.exports.login = (req,res)=>{
 
 
 module.exports.autenticar = (req, res) => {
+
     const { email, senha } = req.body;
 
-   
-    if (email === 'admin@email.com') {
+    if (email === 'admin@email.com' && senha === 'admin123') {
         
         res.redirect('/home'); 
-    } else if (email === 'usuario@email.com') {
+
+    } else if (email === 'usuario@email.com' && senha === '1234') {
        
         res.redirect('/intro'); 
+
     } else {
         
-        res.render('login.ejs', { mensagemErro: 'E-mail ou senha não autorizados.' });
+        res.render('login.ejs', { mensagemErro: 'E-mail ou senha incorretos.' });
     }
 };
 
