@@ -1,8 +1,11 @@
 const express = require('express');
 const routes = require('./Routes/routes');
 const path = require('path');
+const dbConn = require('./Config/dbConn'); 
 
 const app = express();
+
+dbConn();
 
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
