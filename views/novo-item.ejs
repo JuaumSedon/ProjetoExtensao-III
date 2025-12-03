@@ -4,7 +4,274 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Novo Item</title>
-    <link rel="stylesheet" href="/styles/atelier.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+        :root {
+            --bg-color: #f4f6f8;
+            --card-color: #ffffff;
+            --text-primary: #2d3436;
+            --text-muted: #6b7280;
+            --accent-color: #6c5ce7;
+            --border-color: #dfe6e9;
+            --input-bg: #f8f9fa;
+            --dot-color: #e2e2e2;
+        }
+
+        /* --- ACESSIBILIDADE (Adicionei aqui os estilos do botão que criamos) --- */
+        body.alto-contraste {
+            --bg-color: #000000 !important;
+            --card-color: #000000 !important;
+            --text-primary: #ffffff !important;
+            --text-secondary: #ffff00 !important;
+            --text-muted: #adadad !important;
+            --accent-color: #00ffff !important;
+            --border-color: #ffffff !important;
+            --input-bg: #333333 !important;
+            --dot-color: #333333 !important;
+        }
+
+        body.alto-contraste .atelier-card,
+        body.alto-contraste .form-input,
+        body.alto-contraste .form-textarea,
+        body.alto-contraste .list-item {
+            background-color: var(--card-color);
+            color: var(--text-primary);
+            border-color: var(--border-color);
+        }
+
+        .acessibilidade-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-acessibilidade {
+            background-color: var(--accent-color);
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+        }
+
+        .btn-acessibilidade:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- ESTILOS GERAIS DO ATELIER --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+            background-size: 20px 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--text-primary);
+        }
+
+        /* === CARD CONTAINER === */
+        .atelier-card {
+            background-color: var(--card-color);
+            padding: 50px 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === LOGO === */
+        .atelier-logo {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: -20px auto 20px auto;
+            display: block;
+            border: 4px solid var(--card-color);
+            box-shadow: 0 8px 20px rgba(108, 92, 231, 0.25);
+        }
+
+        /* === TITLES === */
+        .atelier-title {
+            color: var(--text-primary);
+            margin-top: 10px;
+            margin-bottom: 40px;
+            font-size: 2.2em;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .atelier-title::after, .atelier-subtitle::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .atelier-subtitle {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        /* === BUTTONS === */
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-atelier, .btn-atelier-primary {
+            padding: 16px 30px;
+            font-size: 0.9em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            width: 100%;
+            max-width: 280px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-atelier {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-atelier:hover {
+            border-color: var(--accent-color);
+            background-color: var(--accent-color);
+            color: #ffffff;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.2);
+        }
+
+        .btn-atelier-primary {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            border: 2px solid var(--accent-color);
+        }
+
+        .btn-atelier-primary:hover {
+            background-color: #5b4cdb;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.3);
+        }
+
+        /* === FORM ELEMENTS === */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background-color: var(--input-bg);
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95em;
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.15);
+        }
+
+        .form-textarea { resize: none; }
+
+        /* === LIST ITEMS === */
+        .list-item {
+            padding: 16px;
+            border-radius: 12px;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            margin-bottom: 12px;
+            text-align: left;
+            transition: border-color 0.2s ease;
+        }
+
+        .list-item:hover { border-color: rgba(108, 92, 231, 0.5); }
+        .list-item-title { font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+        .list-item-desc { font-size: 0.9em; color: var(--text-muted); margin-bottom: 8px; }
+        .list-item-price { font-weight: 700; color: var(--accent-color); }
+        .list-item-actions { display: flex; justify-content: space-between; align-items: center; }
+
+        /* === ICON BUTTONS === */
+        .btn-icon {
+            background: transparent;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 8px;
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+        }
+
+        .btn-icon:hover { background-color: rgba(108, 92, 231, 0.1); color: var(--accent-color); }
+        .btn-icon.delete:hover { background-color: rgba(239, 68, 68, 0.1); color: #ef4444; }
+
+        /* === BACK LINK === */
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 25px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: #5b4cdb; }
+    </style>
 </head>
 <body>
 
