@@ -8,7 +8,6 @@ module.exports.removerItem = async (req, res) => {
 
         await servicoModel.findByIdAndDelete(idItem);
 
-    
         res.redirect('/remover-item');
 
     } catch (error) {

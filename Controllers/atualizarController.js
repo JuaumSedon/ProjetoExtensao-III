@@ -1,42 +1,28 @@
 const servicoModel = require('../Models/servicoModel');
 
-module.exports.atualizarItens = async (req, res) => {
+module.exports.editarPorNome = async (req, res) => {
     try {
-        const itemId = req.params.id; 
-        let novosDados = req.body; 
+        // 1. Pegamos os dados que vieram do formulário
+        const { nome, descricao, preco } = req.body;
 
-        // TRATAMENTO DO CHECKBOX (emEstoque):
-        // Se o checkbox foi marcado, o valor é 'on'; caso contrário, ele não existe no body.
-        if (novosDados.emEstoque === 'on') {
-            novosDados.emEstoque = true;
-        } else {
-            // Se não foi enviado, estava desmarcado
-            novosDados.emEstoque = false;
-        }
-        
-        const itemAtualizado = await ServicoModel.findByIdAndUpdate(
-            itemId,
-            novosDados,
-            { new: true, runValidators: true }
+        // 2. O Mongoose busca pelo "nome" e atualiza a "descricao" e "preco"
+        // Estrutura: findOneAndUpdate(filtro, novosDados)
+        const itemAtualizado = await servicoModel.findOneAndUpdate(
+            { nome: nome }, // FILTRO: Procura onde o nome é igual ao digitado
+            { descricao: descricao, preco: preco } // DADOS: O que será mudado
         );
 
+        // 3. Verificamos se deu certo
         if (!itemAtualizado) {
-             return res.status(404).render('erro.ejs', { message: 'Item de Serviço não encontrado para atualização.' });
+            // Se não achou nenhum item com esse nome
+            return res.status(404).send("Erro: Não encontrei nenhum item com o nome: " + nome);
         }
-        
-        // AÇÃO DE SUCESSO: Redireciona o usuário para a lista após a alteração
-        return res.redirect('/listar-itens'); 
-        
-    } catch (erro) {
 
-        if (erro.name === 'ValidationError') {
-            console.error("Erro de Validação ao atualizar item:", erro.message);
-            // Em caso de erro de validação, informa o usuário
-            return res.status(400).send('Erro de Validação! Verifique se Nome e Preço estão preenchidos.');
-        }
-        
-        console.error("Erro interno do servidor ao atualizar item:", erro);
-        return res.status(500).send('Erro interno ao tentar atualizar o item.');
+        // 4. Se deu certo, volta para a lista
+        res.redirect('/listar-itens');
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Erro ao atualizar o item: " + error);
     }
 };
-

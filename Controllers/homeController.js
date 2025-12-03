@@ -42,22 +42,22 @@ module.exports.paginaRemoverItem = async(req, res) => {
 
 }
 
-module.exports.paginaAtualizarItem = async (req, res) => {
+// No arquivo homeController.js
+
+module.exports.paginaAtualizarItem = (req, res) => {
     try {
-        const itemId = req.params.id; 
-        
-        // Busca o item e passa-o como 'item' (singular)
-        const itemEncontrado = await ServicoModel.findById(itemId); 
+        // Criamos um objeto vazio ou com valores padrão
+        const itemVazio = {
+            _id: "",        // ID vazio pois não selecionamos nada
+            nome: "",       // Campo vazio
+            descricao: "", 
+            preco: "" 
+        };
 
-        if (!itemEncontrado) {
-            return res.status(404).render('erro.ejs', { message: 'Item de Serviço não encontrado para edição.' });
-        }
+        // Renderizamos enviando esse item vazio
+        res.render('public/atualizar.ejs', { item: itemVazio });
 
-        // Renderiza a View EJS
-        res.render('public/atualizar.ejs', { item: itemEncontrado }); 
-        
-    } catch (erro) {
-        console.error("Erro ao carregar formulário de edição:", erro);
-        res.status(500).render('erro.ejs', { message: 'Erro interno ao carregar a página de edição. (Verifique o ID)' });
+    } catch (error) {
+        res.status(500).send("Erro ao carregar página: " + error);
     }
 };

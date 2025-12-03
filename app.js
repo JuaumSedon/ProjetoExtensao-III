@@ -19,8 +19,8 @@ routes.remove(app);
 routes.paginaNovoItem(app);
 routes.adicionarItem(app);
 routes.removerItem(app);
-routes.atualizar(app);
-routes.carregarAtualizacao(app);
+routes.paginaUpdate(app);
+routes.atualizarItem(app);
 
 
 app.use((req,res,next)=>{
