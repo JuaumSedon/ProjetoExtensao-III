@@ -6,15 +6,36 @@ const servicoModel = require('../models/servicoModel')
 
 
 module.exports.login = (req,res)=>{
-
     try {
-
-        res.render('login.ejs');
-        
+      
+        res.render('login.ejs', { mensagemErro: null }); 
     } catch (error) {
-
         res.status(500).send("Erro ao carregar login");
+    }
+};
+
+
+module.exports.autenticar = (req, res) => {
+    const { email, senha } = req.body;
+
+   
+    if (email === 'admin@email.com' && senha === admin123) {
         
+        res.redirect('/home'); 
+    } else if (email === 'usuario@email.com' && senha === 1234) {
+       
+        res.redirect('/intro'); 
+    } else {
+        
+        res.render('login.ejs', { mensagemErro: 'E-mail ou senha não autorizados.' });
+    }
+};
+
+module.exports.paginaIntro = (req, res) => {
+    try {
+        res.render('intro.ejs');
+    } catch (error) {
+        res.status(500).send("Erro ao carregar página de introdução.");
     }
 };
 

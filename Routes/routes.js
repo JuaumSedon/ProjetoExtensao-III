@@ -8,9 +8,14 @@ const atualizarController = require('../controllers/atualizarController');
 
 module.exports = {
 
-    login:(app)=>{
+login:(app)=>{
+        app.get('/', homeController.login);
+      
+        app.post('/login', homeController.autenticar);
+    },
 
-        app.get('/',homeController.login);
+    intro: (app) => {
+        app.get('/intro', homeController.paginaIntro);
     },
 
     home: (app) => {

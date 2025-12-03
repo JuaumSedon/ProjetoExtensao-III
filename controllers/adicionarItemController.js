@@ -8,7 +8,7 @@ module.exports.adicionarItem = async (req, res) => {
         await novoItem.save();
 
 
-        res.redirect('/');
+        res.redirect('/listar-itens');
 
     } catch (error) {
         console.error("Erro ao adicionar item:", error.message);
