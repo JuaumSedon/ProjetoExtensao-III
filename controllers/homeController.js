@@ -6,6 +6,21 @@ const servicoModel = require('../models/servicoModel')
 
 
 module.exports.login = (req,res)=>{
+
+    try {
+
+        res.render('faleconosco.ejs')
+        
+    } catch (error) {
+
+        res.status(500).send("Erro ao carregar");
+        
+    }
+};
+
+
+
+module.exports.login = (req,res)=>{
     try {
       
         res.render('login.ejs', { mensagemErro: null }); 
@@ -19,10 +34,10 @@ module.exports.autenticar = (req, res) => {
     const { email, senha } = req.body;
 
    
-    if (email === 'admin@email.com' && senha === admin123) {
+    if (email === 'admin@email.com') {
         
         res.redirect('/home'); 
-    } else if (email === 'usuario@email.com' && senha === 1234) {
+    } else if (email === 'usuario@email.com') {
        
         res.redirect('/intro'); 
     } else {

@@ -8,6 +8,12 @@ const atualizarController = require('../controllers/atualizarController');
 
 module.exports = {
 
+
+faleconosco:(app)=>{
+
+    app.get('/', homeController.login);
+
+},
 login:(app)=>{
         app.get('/', homeController.login);
       
