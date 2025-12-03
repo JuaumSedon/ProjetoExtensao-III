@@ -95,26 +95,32 @@ module.exports.paginaRemoverItem = async(req, res) => {
 
 }
 
-// No arquivo homeController.js
 
-module.exports.paginaAtualizarItem = (req, res) => {
+
+module.exports.paginaAtualizarItem = async (req, res) => {
     try {
-        // Criamos um objeto vazio ou com valores padrão
-        const itemVazio = {
-            _id: "",        // ID vazio pois não selecionamos nada
-            nome: "",       // Campo vazio
-            descricao: "", 
-            preco: "" 
-        };
+      
+        const nomeItem = req.query.nome;
+        
+        let itemParaEditar;
 
-        // Renderizamos enviando esse item vazio
-        res.render('atualizar.ejs', { item: itemVazio });
+        if (nomeItem) {
+            itemParaEditar = await servicoModel.findOne({ nome: nomeItem });
+        }
+
+        if (!itemParaEditar) {
+            itemParaEditar = {
+                _id: "",
+                nome: "",
+                descricao: "", 
+                preco: "",
+                emEstoque: true
+            };
+        }
+        res.render('atualizar.ejs', { item: itemParaEditar });
 
     } catch (error) {
+        console.log(error);
         res.status(500).send("Erro ao carregar página: " + error);
-
-        // Renderiza a View EJS
-        res.render('atualizar.ejs', { item: itemEncontrado }); 
-        
     } 
 };
