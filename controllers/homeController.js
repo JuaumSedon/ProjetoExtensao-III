@@ -108,7 +108,7 @@ module.exports.paginaAtualizarItem = (req, res) => {
         };
 
         // Renderizamos enviando esse item vazio
-        res.render('public/atualizar.ejs', { item: itemVazio });
+        res.render('atualizar.ejs', { item: itemVazio });
 
     } catch (error) {
         res.status(500).send("Erro ao carregar página: " + error);
