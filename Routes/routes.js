@@ -7,6 +7,12 @@ const { removerItem } = require('../controllers/removerItemController');
 const atualizarController = require('../controllers/atualizarController');
 
 module.exports = {
+
+    login:(app)=>{
+
+        app.get('/',homeController.login);
+    },
+
     home: (app) => {
         app.get('/home', homeController.home);
     },
