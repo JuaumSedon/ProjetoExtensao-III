@@ -110,14 +110,17 @@ module.exports.paginaRemoverItem = async(req, res) => {
 
 module.exports.paginaAtualizarItem = async (req, res) => {
     try {
-      
         const nomeItem = req.query.nome;
         
-        let itemParaEditar;
+
+        const todosOsItens = await servicoModel.find({}).sort({ nome: 1 }); 
+        
+        let itemParaEditar = null;
 
         if (nomeItem) {
             itemParaEditar = await servicoModel.findOne({ nome: nomeItem });
         }
+
 
         if (!itemParaEditar) {
             itemParaEditar = {
@@ -128,7 +131,12 @@ module.exports.paginaAtualizarItem = async (req, res) => {
                 emEstoque: true
             };
         }
-        res.render('atualizar.ejs', { item: itemParaEditar });
+
+
+        res.render('atualizar.ejs', { 
+            item: itemParaEditar,
+            listaDeItens: todosOsItens 
+        });
 
     } catch (error) {
         console.log(error);

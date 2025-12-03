@@ -279,11 +279,22 @@
         <h1 class="atelier-title">Atualizar Item</h1>
         <h2 class="atelier-subtitle"><%= item.nome %></h2>
 
-        <form method="POST" action="/atualizar-item">
+<form method="POST" action="/atualizar-item">
 
             <div class="form-group">
-                <label class="form-label" for="nome">Nome do Item:</label>
-                <input class="form-input" type="text" id="nome" name="nome" value="<%= item.nome %>" required>
+                <label class="form-label" for="nome">Selecione o Item para Editar:</label>
+                
+                <select class="form-input" id="nome" name="nome" required 
+                        onchange="if(this.value) window.location.href='/atualizar?nome=' + encodeURIComponent(this.value)">
+                    
+                    <option value="" disabled <%= !item.nome ? 'selected' : '' %>>-- Escolha um serviço --</option>
+
+                    <% listaDeItens.forEach(opcao => { %>
+                        <option value="<%= opcao.nome %>" <%= (item.nome === opcao.nome) ? 'selected' : '' %>>
+                            <%= opcao.nome %>
+                        </option>
+                    <% }) %>
+                </select>
             </div>
 
             <div class="form-group">
@@ -294,6 +305,11 @@
             <div class="form-group">
                 <label class="form-label" for="preco">Preço (R$):</label>
                 <input class="form-input" type="number" id="preco" name="preco" step="0.01" min="0" value="<%= item.preco %>" required>
+            </div>
+            
+            <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                <input type="checkbox" id="emEstoque" name="emEstoque" <% if (item.emEstoque) { %> checked <% } %>>
+                <label class="form-label" for="emEstoque" style="margin:0;">Disponível em Estoque</label>
             </div>
 
             <div class="button-group">
