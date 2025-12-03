@@ -1,149 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bem-vindo ao Atelier</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
-
-        :root {
-            --bg-color: #f4f6f8;
-            --card-color: #ffffff;
-            --text-primary: #2d3436;
-            --accent-color: #6c5ce7; /* Roxo Criativo */
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-color);
-            background-image: radial-gradient(#e2e2e2 1px, transparent 1px);
-            background-size: 20px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: var(--text-primary);
-        }
-
-        .modal-container {
-            background-color: var(--card-color);
-            padding: 50px 40px;
-            border-radius: 20px;
-            text-align: center;
-            max-width: 450px;
-            width: 90%;
-            position: relative;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(0,0,0,0.02);
-            /* Adicionado para garantir que a imagem sobreposta não seja cortada se quiser efeito pop-out */
-            margin-top: 30px; 
-        }
-
-        /* --- NOVO CSS DA IMAGEM --- */
-        .atelier-logo {
-            width: 100px;
-            height: 100px;
-            object-fit: cover; /* Garante que a imagem não fique esticada */
-            border-radius: 50%; /* Deixa a imagem redonda */
-            margin: -20px auto 20px auto; /* Margem negativa no topo aproxima do título ou sobe ela */
-            display: block;
-            border: 4px solid var(--card-color); /* Anel branco ao redor */
-            box-shadow: 0 8px 20px rgba(108, 92, 231, 0.25); /* Sombra colorida suave */
-        }
-        /* -------------------------- */
-
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            color: #b2bec3;
-            font-size: 28px;
-            font-weight: 300;
-            cursor: pointer;
-            transition: color 0.3s ease;
-            line-height: 1;
-        }
-
-        .close-btn:hover {
-            color: var(--accent-color);
-        }
-
-        .modal-container h1 {
-            color: var(--text-primary);
-            margin-top: 10px;
-            margin-bottom: 40px;
-            font-size: 2.2em;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .modal-container h1::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 4px;
-            background-color: var(--accent-color);
-            margin: 15px auto 0;
-            border-radius: 2px;
-        }
-
-        .button-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .modal-container .cta-button {
-            background-color: transparent;
-            color: var(--text-primary);
-            border: 2px solid #dfe6e9; 
-            padding: 16px 30px;
-            font-size: 0.9em;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            border-radius: 12px;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            width: 100%;
-            max-width: 280px;
-            text-decoration: none;
-        }
-
-        .modal-container .cta-button:hover {
-            border-color: var(--accent-color);
-            background-color: var(--accent-color);
-            color: #ffffff;
-            transform: translateY(-4px);
-            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.2);
-        }
-    </style>
+    <link rel="stylesheet" href="atelier.css">
 </head>
-
 <body>
-    <div class="modal-container">
-        
+    <div class="atelier-card">
         <img src="https://images.unsplash.com/photo-1520006403909-838d6b92c22e?auto=format&fit=crop&w=200&q=80" 
              alt="Logo Atelier" 
              class="atelier-logo">
 
-        <h1>Atelier CRUD</h1>
+        <h1 class="atelier-title">Atelier CRUD</h1>
 
         <div class="button-group">
-            <a href="/listar-itens" class="cta-button">Listar Serviços</a>
-            <a href="/novo-item" class="cta-button">Adicionar Serviço</a>
-            <a href="/remover-item" class="cta-button">Remover Serviço</a>
-            <a href="/atualizar" class="cta-button">Atualizar Serviço</a>
+            <a href="/listar-itens" class="btn-atelier">Listar Serviços</a>
+            <a href="/novo-item" class="btn-atelier">Adicionar Serviço</a>
+            <a href="/remover-item" class="btn-atelier">Remover Serviço</a>
+            <a href="/atualizar" class="btn-atelier">Atualizar Serviço</a>
         </div>
     </div>
 </body>
-
 </html>
