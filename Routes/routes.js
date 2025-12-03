@@ -6,9 +6,15 @@ const {listarItens} = require('../controllers/listarItensController');
 const { removerItem } = require('../controllers/removerItemController');
 const atualizarController = require('../controllers/atualizarController');
 const mensagemController = require('../controllers/mensagemController');
+const usuarioController = require('../controllers/usuarioController')
 
 
 module.exports = {
+
+    cadastro: (app) => {
+        app.get('/cadastro', homeController.paginaCadastro);
+        app.post('/cadastro', usuarioController.realizarCadastro); 
+    },
 
   
     mensagens: (app) => {

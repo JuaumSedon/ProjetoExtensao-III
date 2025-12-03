@@ -19,6 +19,7 @@ routes.login(app);
 routes.intro(app);
 routes.faleconosco(app);
 routes.mensagens(app);
+routes.cadastro(app);
 routes.lista(app);
 routes.remove(app);
 routes.paginaNovoItem(app);
