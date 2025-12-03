@@ -5,7 +5,7 @@ const servicoModel = require('../models/servicoModel')
 
 
 
-module.exports.login = (req,res)=>{
+module.exports.faleconoscoPagina = (req,res)=>{
 
     try {
 

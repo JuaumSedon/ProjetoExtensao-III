@@ -5,13 +5,23 @@ const {adicionarItem} = require('../controllers/adicionarItemController');
 const {listarItens} = require('../controllers/listarItensController');
 const { removerItem } = require('../controllers/removerItemController');
 const atualizarController = require('../controllers/atualizarController');
+const mensagemController = require('../controllers/mensagemController');
+
 
 module.exports = {
+
+  
+    mensagens: (app) => {
+   
+        app.post('/enviar-mensagem', mensagemController.salvarMensagem);
+
+        app.get('/mensagens', mensagemController.listarMensagens);
+    },
 
 
 faleconosco:(app)=>{
 
-    app.get('/', homeController.login);
+    app.get('/fale-conosco', homeController.faleconoscoPagina);
 
 },
 login:(app)=>{

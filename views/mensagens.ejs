@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagens Recebidas</title>
+    <link rel="stylesheet" href="/styles/atelier.css">
+</head>
+<body>
+
+    <div class="atelier-card" style="max-width: 800px;"> <h1 class="atelier-title">Mensagens Recebidas</h1>
+
+        <div class="button-group" style="margin-bottom: 30px;">
+            <a href="/home" class="back-link" style="margin-top:0;">Voltar ao Início</a>
+        </div>
+
+        <% if (mensagens.length > 0) { %>
+            
+            <% mensagens.forEach(msg => { %>
+                <div class="list-item">
+                    <div class="list-item-actions">
+                        <div class="list-item-title"><%= msg.nome %></div>
+                        <div class="list-item-price" style="font-size: 0.8em; color: var(--text-muted); font-weight: normal;">
+                            <%= msg.dataEnvio.toLocaleDateString('pt-BR') %> às <%= msg.dataEnvio.toLocaleTimeString('pt-BR') %>
+                        </div>
+                    </div>
+                    
+                    <div style="font-size: 0.9em; color: var(--accent-color); margin-bottom: 5px;">
+                        <%= msg.email %>
+                    </div>
+
+                    <div class="list-item-desc" style="color: var(--text-primary); margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border-color);">
+                        "<%= msg.mensagem %>"
+                    </div>
+                </div>
+            <% }) %>
+
+        <% } else { %>
+            <div class="list-item" style="text-align: center; color: var(--text-muted);">
+                Nenhuma mensagem recebida ainda.
+            </div>
+        <% } %>
+
+    </div>
+
+</body>
+</html>

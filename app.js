@@ -14,6 +14,8 @@ app.use(express.urlencoded({ extended: true }));
 routes.home(app);
 routes.login(app);
 routes.intro(app);
+routes.faleconosco(app);
+routes.mensagens(app);
 routes.lista(app);
 routes.remove(app);
 routes.paginaNovoItem(app);

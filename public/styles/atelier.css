@@ -276,3 +276,55 @@ body {
 .back-link:hover {
     color: #5b4cdb;
 }
+
+/* --- ACESSIBILIDADE --- */
+
+/* Forçamos a prioridade usando body.alto-contraste */
+body.alto-contraste {
+    --bg-color: #000000 !important;
+    --card-color: #000000 !important;
+    --text-primary: #ffffff !important;
+    --text-secondary: #ffff00 !important; /* Amarelo */
+    --text-muted: #adadad !important;
+    --accent-color: #00ffff !important;   /* Ciano */
+    --border-color: #ffffff !important;
+    --input-bg: #333333 !important;
+    --dot-color: #333333 !important;
+}
+
+/* Garanta que os inputs e cards usem as variáveis */
+body.alto-contraste .atelier-card,
+body.alto-contraste .form-input,
+body.alto-contraste .form-textarea,
+body.alto-contraste .list-item {
+    background-color: var(--card-color);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+/* Estilos do botão flutuante */
+.acessibilidade-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999; /* Garante que fique acima de tudo */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-acessibilidade {
+    background-color: #6c5ce7; /* Cor original se var falhar */
+    background-color: var(--accent-color);
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
