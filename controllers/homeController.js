@@ -3,6 +3,21 @@
 
 const servicoModel = require('../models/servicoModel')
 
+
+
+module.exports.login = (req,res)=>{
+
+    try {
+
+        res.render('login.ejs');
+        
+    } catch (error) {
+
+        res.status(500).send("Erro ao carregar login");
+        
+    }
+};
+
 module.exports.home = (req, res) => {
 
     try {

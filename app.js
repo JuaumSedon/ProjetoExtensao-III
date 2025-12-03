@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 routes.home(app);
+routes.login(app);
 routes.lista(app);
 routes.remove(app);
 routes.paginaNovoItem(app);
