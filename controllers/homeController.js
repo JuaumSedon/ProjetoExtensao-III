@@ -57,16 +57,11 @@ module.exports.paginaAtualizarItem = (req, res) => {
         // Renderizamos enviando esse item vazio
         res.render('public/atualizar.ejs', { item: itemVazio });
 
-<<<<<<< HEAD:Controllers/homeController.js
     } catch (error) {
         res.status(500).send("Erro ao carregar página: " + error);
-=======
+
         // Renderiza a View EJS
         res.render('atualizar.ejs', { item: itemEncontrado }); 
         
-    } catch (erro) {
-        console.error("Erro ao carregar formulário de edição:", erro);
-        res.status(500).render('erro.ejs', { message: 'Erro interno ao carregar a página de edição. (Verifique o ID)' });
->>>>>>> f2c7f8ae3c534214787db1bba352a374efe2c3ca:controllers/homeController.js
-    }
+    } 
 };
