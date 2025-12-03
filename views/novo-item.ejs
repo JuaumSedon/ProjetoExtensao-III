@@ -3,97 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Novo Item</title>
-    <style>
-        /* (Vou usar um CSS simples, você pode usar o seu) */
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #4a4a4a;
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding-top: 50px;
-        }
-        .form-container {
-            background-color: #3c3c3c;
-            padding: 40px;
-            border: 2px solid #33d4e2;
-            border-radius: 8px;
-            width: 400px;
-        }
-        .form-container h1 {
-            color: #33d4e2;
-            text-align: center;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            box-sizing: border-box; /* Garante que padding não afete a largura */
-            border-radius: 5px;
-            border: 1px solid #777;
-            background-color: #555;
-            color: #ffffff;
-        }
-        .form-button {
-            background-color: #33d4e2;
-            color: #ffffff;
-            border: none;
-            padding: 15px;
-            font-size: 1em;
-            font-weight: bold;
-            cursor: pointer;
-            border-radius: 5px;
-            width: 100%;
-            transition: background-color 0.3s ease;
-        }
-        .form-button:hover {
-            background-color: #2abac6;
-        }
-        .back-link {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: #33d4e2;
-        }
-    </style>
+    <title>Novo Item</title>
+    <link rel="stylesheet" href="./public/atelier.css">
 </head>
 <body>
 
-    <div class="form-container">
-        <h1>Adicionar Novo Item</h1>
+    <div class="atelier-card">
+        <h1 class="atelier-title">Novo Serviço</h1>
 
         <form method="POST" action="/adicionar-item">
             
             <div class="form-group">
-                <label for="nome">Nome do Item:</label>
-                <input type="text" id="nome" name="nome" required>
+                <label class="form-label" for="nome">Nome do Item:</label>
+                <input class="form-input" type="text" id="nome" name="nome" placeholder="Ex: Bainha de calça" required>
             </div>
 
             <div class="form-group">
-                <label for="descricao">Descrição:</label>
-                <textarea id="descricao" name="descricao" rows="3"></textarea>
+                <label class="form-label" for="descricao">Descrição:</label>
+                <textarea class="form-textarea" id="descricao" name="descricao" rows="3" placeholder="Detalhes do serviço..."></textarea>
             </div>
 
             <div class="form-group">
-                <label for="preco">Preço:</label>
-                <input type="number" id="preco" name="preco" step="0.01" min="0" required>
+                <label class="form-label" for="preco">Preço (R$):</label>
+                <input class="form-input" type="number" id="preco" name="preco" step="0.01" min="0" placeholder="0.00" required>
             </div>
 
-            <button type="submit" class="form-button">Salvar Item</button>
+            <div class="button-group">
+                <button type="submit" class="btn-atelier-primary">Cadastrar Item</button>
+                <a href="/home" class="back-link">Voltar para Home</a>
+            </div>
         </form>
-
-        <a href="/home" class="back-link">Voltar para Home</a>
     </div>
 
 </body>
