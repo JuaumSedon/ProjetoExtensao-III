@@ -1,7 +1,5 @@
 # Ateliê Laudir
 
-![Image of a stylish sewing machine next to a computer screen displaying a modern web dashboard](https://github.com/juaumsedon/projetoextensao-iii/assets/55677931/d1e21b79-5095-4682-a7d5-e517a6a40a5a)
-
 ## ✨ Visão Geral do Projeto
 
 O **Ateliê Laudir** é uma plataforma digital desenvolvida para modernizar a presença online de um pequeno negócio local especializado em **serviços de costura, estética e venda de produtos artesanais**.
@@ -65,3 +63,4 @@ O projeto incorpora um script (`/public/scripts/acessibilidade.js`) e estilos CS
 1.  Aumentar e diminuir o tamanho da fonte.
 
 ***
+
