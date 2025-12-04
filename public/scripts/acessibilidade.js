@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Criar os botões dinamicamente no HTML
+ 
     const container = document.createElement('div');
     container.className = 'acessibilidade-container';
     
@@ -14,13 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     document.body.appendChild(container);
 
-    // Recuperar preferência salva
+    
     if (localStorage.getItem('altoContraste') === 'true') {
         document.body.classList.add('alto-contraste');
     }
 
-    // 3. Lógica do Tamanho da Fonte
-    let tamanhoAtual = 100; // Porcentagem
+  
+    let tamanhoAtual = 100; 
     const btnAumentar = document.getElementById('btn-aumentar');
     const btnDiminuir = document.getElementById('btn-diminuir');
 

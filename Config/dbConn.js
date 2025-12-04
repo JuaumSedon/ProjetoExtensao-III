@@ -5,8 +5,7 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
 
-let isConnected = false; // Cache da conexão // Problema do vercel
-
+let isConnected = false; 
 const conexaoBD = async () => {
     
     if (isConnected) {

@@ -34,19 +34,17 @@ module.exports.autenticar = async (req, res) => {
     const { email, senha } = req.body;
 
     try {
-        // 1. Verifica ADMIN (Fixo no código)
+
         if (email === 'admin@email.com' && senha === 'admin123') {
             return res.redirect('/home');
         }
 
-        // 2. Verifica USUÁRIO COMUM (No Banco de Dados)
         const usuarioComum = await UsuarioModel.findOne({ email: email, senha: senha });
 
         if (usuarioComum) {
             return res.redirect('/intro');
         }
 
-        // 3. Se falhar
         res.render('login.ejs', { mensagemErro: 'E-mail ou senha incorretos.' });
 
     } catch (error) {
