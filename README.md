@@ -1,117 +1,67 @@
-# 🧵 Projeto Ateliê Laudir
+# Ateliê Laudir
 
-## 1. Descrição do Projeto
+![Image of a stylish sewing machine next to a computer screen displaying a modern web dashboard](https://github.com/juaumsedon/projetoextensao-iii/assets/55677931/d1e21b79-5095-4682-a7d5-e517a6a40a5a)
 
-O objetivo central deste projeto é desenvolver uma **vitrine digital** para o Ateliê Laudir que seja, ao mesmo tempo, moderna, informativa e de fácil navegação.
+## ✨ Visão Geral do Projeto
 
-A plataforma foi projetada para:
-* Solidificar a presença online da marca.
-* Captar o interesse de novos clientes.
-* Facilitar o acesso a informações essenciais, como a proposta de valor e a gama de serviços disponíveis.
+O **Ateliê Laudir** é uma plataforma digital desenvolvida para modernizar a presença online de um pequeno negócio local especializado em **serviços de costura, estética e venda de produtos artesanais**.
 
-A solução digital visa apoiar o crescimento de um **pequeno negócio local**, facilitando a organização dos serviços de costura e estética, além da comercialização de produtos.
+O objetivo principal é oferecer uma opção de pedir serviços e, ao mesmo tempo, um **Painel Administrativo completo (CRUD)** para a fundadora gerenciar os serviços de forma eficiente.
 
----
+### Estrutura da Aplicação
 
-## 2. Tecnologias Utilizadas
+O projeto segue a arquitetura **MVC (Model-View-Controller)**, utilizando **EJS** para renderização dinâmica e organização limpa do frontend, e **Mongoose** para interface com o banco de dados.
 
-As principais tecnologias aplicadas no desenvolvimento deste projeto são:
+## 🛠️ Tecnologias Principais
 
-* **Node.js**: Ambiente de execução do JavaScript no lado do servidor.
-* **MongoDB**: Banco de dados NoSQL utilizado para armazenar os dados da aplicação.
-* **HTML/CSS**: Linguagens de marcação e estilo para a construção da interface do usuário.
-* **JavaScript**: Linguagem de programação para a lógica do front-end e back-end.
+| Categoria | Tecnologia | Uso no Projeto |
+| :--- | :--- | :--- |
+| **Backend** | **Node.js** | Ambiente de execução JavaScript no servidor. |
+| **Framework** | **Express** | Definição de rotas e middleware. |
+| **Banco de Dados** | **MongoDB** | Banco de dados NoSQL para dados persistentes. |
+| **ORM/ODM** | **Mongoose** | Modelagem de dados e conexão com o MongoDB. |
+| **Frontend** | **EJS** | Motor de templates para renderização dinâmica de páginas. |
+| **Estilização** | **CSS Puro** | Estilos modernos e responsivos, focados em acessibilidade. |
 
----
+***
 
-## 3. Entidades e Estrutura do Banco de Dados
+## ⚙️ Entidades e Modelagem de Dados
 
-O sistema foi modelado com base nas seguintes entidades principais:
+O banco de dados (`atelie_laudir`) é composto pelas seguintes coleções principais, gerenciadas por meio do **Mongoose**:
 
-* **Serviços de Costura**: Armazena os serviços oferecidos para o CRUD (Criar, ler, atualizar, deletar).
-* **Serviços de Estética**: Exibe os serviços de estética, e seus valores. 
-* **Projetos**: Funciona como o portfólio da vitrine digital, exibindo os trabalhos anteriores.
-* **Usuários**: Armazena as credenciais para acesso ao painel administrativo onde o CRUD será gerenciado.
-* **Agendamentos**: Representa o agendamento de um serviço (costura, estética, etc.) feito por um cliente.
+| Coleção | Model | Descrição |
+| :--- | :--- | :--- |
+| `items` | `servicoModel` | Armazena os **serviços/produtos** oferecidos (nome, descrição, preço). É o foco do CRUD administrativo. |
+| `usuarios` | `usuarioModel` | Gerencia os usuários com credenciais (nome, email, senha) para acesso (padrão e admin). |
+| `mensagens` | `mensagemModel` | Captura e armazena mensagens enviadas pelos clientes através da página "Fale Conosco". |
 
-O banco de dados, nomeado `atelie_laudir`, é composto pelas coleções `servicos`, `projetos` e `usuarios`, que armazenam as informações conforme o schema definido no diagrama do projeto.
+***
 
----
+## 🔑 Fluxo de Usuário e Autenticação
 
-## 4. Funcionalidades Principais (CRUD)
+A aplicação suporta dois perfis de acesso:
 
-O núcleo do sistema é um **CRUD** (Create, Read, Update, Delete) que permite o gerenciamento completo dos serviços oferecidos. As funcionalidades incluem:
+### 1. Área do Cliente (Público)
 
-* **Create**: Adicionar novos serviços (ex: "Customização de Vestidos").
-* **Read**: Visualizar todos os serviços em uma lista administrativa.
-* **Update**: Editar preços, descrições e disponibilidade dos serviços.
-* **Delete**: Remover serviços que não são mais oferecidos.
+* **Página Inicial (`/intro`):** Apresenta a história do ateliê e informações gerais.
+* **Fale Conosco (`/fale-conosco`):** Formulário para clientes enviarem mensagens e ordenarem pedidos (salvas no banco de dados via `mensagemController.salvarMensagem`).
+* **Cadastro (`/cadastro`):** Permite que novos usuários criem uma conta para acesso padrão.
 
----
+### 2. Painel Administrativo (CRUD)
 
-## 5. Telas e Fluxos Principais
+O acesso ao painel é liberado após a autenticação. A conta **Admin padrão** é fixa: `E-mail: admin@email.com` e `Senha: admin123`.
 
-A aplicação conta com telas essenciais para apresentar o ateliê e permitir a interação do usuário:
+A página principal do painel (`/home`) oferece acesso direto às funcionalidades de gerenciamento:
 
-* **Página Inicial / Nossa História**: Apresenta a história do Ateliê Laudir e sua fundadora.
-* **Fale Conosco**: Exibe informações de contato e um formulário para envio de mensagens.
+* **Listar Serviços (`/listar-itens`):** Visualiza todos os itens/serviços cadastrados.
+* **Adicionar Serviço (`/novo-item` -> `/adicionar-item`):** Interface para incluir novos serviços (CREATE).
+* **Atualizar Serviço (`/atualizar` -> `/atualizar-item`):** Permite selecionar um item pelo nome e editar sua descrição/preço (UPDATE).
+* **Remover Serviço (`/remover-item` -> `/remover-item/:id`):** Lista de itens com botões de exclusão (DELETE), com confirmação obrigatória.
+* **Ver Mensagens (`/mensagens`):** Lista todas as mensagens recebidas, ordenadas por data de envio.
 
----
+### Recurso de Acessibilidade
 
-## Como rodar localmente (Node + MongoDB)
+O projeto incorpora um script (`/public/scripts/acessibilidade.js`) e estilos CSS que permitem ao usuário:
+1.  Aumentar e diminuir o tamanho da fonte.
 
-Passos rápidos para executar a API localmente:
-
-1. Instale Node.js (v16+).
-2. Na raiz do projeto rode:
-
-	npm install
-
-3. Crie um arquivo `.env` copiando `.env.example` e ajuste `MONGODB_URI` se necessário.
-
-4. Inicie o servidor em modo desenvolvimento:
-
-	npm run dev
-
-O servidor será iniciado em http://localhost:3000 por padrão.
-
-## MongoDB — instruções completas
-
-Você pode usar MongoDB local (instalado no Windows) ou MongoDB Atlas (nuvem). A string de conexão padrão no projeto é:
-
-```
-mongodb://localhost:27017/atelie_laudir
-```
-
-Opção A — MongoDB local no Windows:
-
-- Baixe o instalador do MongoDB Community Server: https://www.mongodb.com/try/download/community
-- Instale como serviço (opção recomendada). O banco usará por padrão o diretório C:\\data\\db.
-- Verifique o serviço no PowerShell:
-
-```powershell
-Get-Service -Name MongoDB* | Format-Table -AutoSize
-```
-
-Opção B — MongoDB Atlas (cloud):
-
-- Crie uma conta e um cluster grátis em https://www.mongodb.com/cloud/atlas
-- Configure Database Access (usuário/senha) e Network Access (seu IP de desenvolvimento).
-- Copie a string de conexão do Atlas para `MONGODB_URI` em `.env`.
-
-Exemplo:
-
-```
-MONGODB_URI=mongodb+srv://user:password@cluster0.abcd.mongodb.net/atelie_laudir?retryWrites=true&w=majority
-```
-
-## Rotas de API (inicial)
-
-GET /services  -> Lista todos os serviços (rota usada para teste inicial)
-POST /services -> Cria um novo serviço
-GET /services/:id -> Obtém um serviço por id
-PUT /services/:id -> Atualiza um serviço
-DELETE /services/:id -> Remove um serviço
-
----
-
+***
