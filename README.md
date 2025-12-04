@@ -1,5 +1,7 @@
 # Ateliê Laudir
 
+## Site do código: https://atelielaudir.vercel.app
+
 ## ✨ Visão Geral do Projeto
 
 O **Ateliê Laudir** é uma plataforma digital desenvolvida para modernizar a presença online de um pequeno negócio local especializado em **serviços de costura, estética e venda de produtos artesanais**.
@@ -63,4 +65,5 @@ O projeto incorpora um script (`/public/scripts/acessibilidade.js`) e estilos CS
 1.  Aumentar e diminuir o tamanho da fonte.
 
 ***
+
 
